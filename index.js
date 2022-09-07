@@ -41,4 +41,6 @@ if (answer2 === "hours") {
       return;
     }
   });
+} else if (answer2 === "type") {
+  //[VRB],[DGB],[INF],[WRN],[ERR]
 }
