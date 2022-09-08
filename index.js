@@ -25,10 +25,9 @@ const answer2 = await rl2.question(
 rl2.close();
 
 //ovo se vrsi ako zeli prema satima, moran jos popravit ovo masu
-
-if (answer2 === "hours") {
+const search = async function (question) {
   const rl = readline.createInterface({ input, output });
-  const answer = await rl.question("Unesi sate u sljedecem formatu --->HH:MM ");
+  const answer = await rl.question(question);
   rl.close();
 
   arr.forEach((element) => {
@@ -41,20 +40,12 @@ if (answer2 === "hours") {
       return;
     }
   });
+};
+
+if (answer2 === "hours") {
+  search("Unesi sate u sljedecem formatu --->HH:MM ");
 } else if (answer2 === "type") {
   //[VRB],[DGB],[INF],[WRN],[ERR]
-  const rl = readline.createInterface({ input, output });
-  const answer = await rl.question(
-    "Unesi tip log-a (VRB, DGB, INF, WRN, ERR)  "
-  );
-  rl.close();
-
-  arr.forEach((element) => {
-    let found = element.match(answer.toLocaleUpperCase());
-    if (found !== null) {
-      console.log(found);
-    } else {
-      return;
-    }
-  });
+  search("Unesi tip log-a (VRB, DGB, INF, WRN, ERR)  ");
+} else if (answer === "modules") {
 }
