@@ -1,8 +1,6 @@
 import { readFileSync, promises as fsPromises } from "fs";
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import { type } from "os";
-import { CLIENT_RENEG_LIMIT } from "tls";
 
 let arr;
 
@@ -48,8 +46,7 @@ if (answer2 === "hours") {
   rl.close();
 
   arr.forEach((element) => {
-    let found = element /*substring(11, 16)*/
-      .match(" " + answer + "");
+    let found = element.match(" " + answer + ":");
 
     if (found !== null) {
       console.log(found);
