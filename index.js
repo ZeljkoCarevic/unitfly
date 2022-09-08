@@ -14,7 +14,7 @@ function syncReadFile(filename) {
   return arr;
 }
 syncReadFile("./log20201104[1].txt");
-//u terminalu runnat node index.js
+//u terminalu runnat node index.jszz
 
 //ovako dobijen tip pretrazivanja
 
@@ -43,4 +43,18 @@ if (answer2 === "hours") {
   });
 } else if (answer2 === "type") {
   //[VRB],[DGB],[INF],[WRN],[ERR]
+  const rl = readline.createInterface({ input, output });
+  const answer = await rl.question(
+    "Unesi tip log-a (VRB, DGB, INF, WRN, ERR)  "
+  );
+  rl.close();
+
+  arr.forEach((element) => {
+    let found = element.match(answer.toLocaleUpperCase());
+    if (found !== null) {
+      console.log(found);
+    } else {
+      return;
+    }
+  });
 }
