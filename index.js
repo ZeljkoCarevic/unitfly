@@ -47,5 +47,7 @@ if (answer2 === "hours") {
 } else if (answer2 === "type") {
   //[VRB],[DGB],[INF],[WRN],[ERR]
   search("Unesi tip log-a (VRB, DGB, INF, WRN, ERR)  ");
-} else if (answer === "modules") {
+} else if (answer2 === "modules") {
+  search("Unesi tip modula aplikacije ");
 }
+//m-vault je uvik isti (?)
