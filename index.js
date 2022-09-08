@@ -20,19 +20,17 @@ syncReadFile("./log20201104[1].txt");
 
 const rl2 = readline.createInterface({ input, output });
 const answer2 = await rl2.question(
-  "Do you want to search by hours, span of hours, type, or modules"
+  "Do you want to search by hours, span of hours, type, or modules: "
 );
 rl2.close();
 
-//ovo se vrsi ako zeli prema satima, moran jos popravit ovo masu
 const search = async function (question) {
   const rl = readline.createInterface({ input, output });
   const answer = await rl.question(question);
   rl.close();
 
   arr.forEach((element) => {
-    let found = element /*substring(11, 16)*/
-      .match(answer);
+    let found = element.match(answer);
 
     if (found !== null) {
       console.log(found);
@@ -43,28 +41,41 @@ const search = async function (question) {
 };
 
 if (answer2 === "hours") {
-  search("Input the hours in the format of --->HH:MM ");
+  const rl = readline.createInterface({ input, output });
+  const answer = await rl.question(
+    "Input the hours in the format of --->HH:MM : "
+  );
+  rl.close();
+
+  arr.forEach((element) => {
+    let found = element /*substring(11, 16)*/
+      .match(" " + answer + "");
+
+    if (found !== null) {
+      console.log(found);
+    } else {
+      return;
+    }
+  });
 } else if (answer2 === "type") {
-  //[VRB],[DGB],[INF],[WRN],[ERR]
   search("Input the type of the log message (VRB, DGB, INF, WRN, ERR):  ");
 } else if (answer2 === "modules") {
-  search("Input the module type ");
+  search("Input the module type: ");
 }
 //m-vault je uvik isti (?)
-if (answer2 === "span" || "span of hours") {
+if (answer2 === "span" || answer2 === "span of hours") {
   const rlHourSpan = readline.createInterface({ input, output });
   const answerSpanStart = await rlHourSpan.question(
-    "Input the start in the format of 'HH': "
+    "Input the start in the format of 'HH:':  "
   );
   const answerSpanEnd = await rlHourSpan.question(
-    "Input the end +in the format of'HH: "
+    "Input the end in the format of 'HH:': "
   );
   rlHourSpan.close();
 
   for (let i = answerSpanStart; i <= answerSpanEnd; i++) {
-    //console.log(i);
     arr.forEach((element) => {
-      let found = element.match(i);
+      let found = element.match(" " + i + ":");
 
       if (found !== null) {
         console.log(found);
