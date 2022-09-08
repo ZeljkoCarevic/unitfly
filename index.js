@@ -20,7 +20,7 @@ syncReadFile("./log20201104[1].txt");
 
 const rl2 = readline.createInterface({ input, output });
 const answer2 = await rl2.question(
-  "Do you want to search by hours, type, M-files or modules "
+  "Do you want to search by hours, span of hours, type, or modules"
 );
 rl2.close();
 
@@ -43,11 +43,34 @@ const search = async function (question) {
 };
 
 if (answer2 === "hours") {
-  search("Unesi sate u sljedecem formatu --->HH:MM ");
+  search("Input the hours in the format of --->HH:MM ");
 } else if (answer2 === "type") {
   //[VRB],[DGB],[INF],[WRN],[ERR]
-  search("Unesi tip log-a (VRB, DGB, INF, WRN, ERR)  ");
+  search("Input the type of the log message (VRB, DGB, INF, WRN, ERR):  ");
 } else if (answer2 === "modules") {
-  search("Unesi tip modula aplikacije ");
+  search("Input the module type ");
 }
 //m-vault je uvik isti (?)
+if (answer2 === "span" || "span of hours") {
+  const rlHourSpan = readline.createInterface({ input, output });
+  const answerSpanStart = await rlHourSpan.question(
+    "Input the start in the format of 'HH': "
+  );
+  const answerSpanEnd = await rlHourSpan.question(
+    "Input the end +in the format of'HH: "
+  );
+  rlHourSpan.close();
+
+  for (let i = answerSpanStart; i <= answerSpanEnd; i++) {
+    //console.log(i);
+    arr.forEach((element) => {
+      let found = element.match(i);
+
+      if (found !== null) {
+        console.log(found);
+      } else {
+        return;
+      }
+    });
+  }
+}
